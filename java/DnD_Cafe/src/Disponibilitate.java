@@ -1,3 +1,3 @@
 public enum Disponibilitate {
-    liber, ocupat, rezervat
+    LIBER, OCUPAT
 }

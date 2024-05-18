@@ -6,4 +6,5 @@ public class Masa {
         this.disponibilitate = disponibilitate;
         this.numar = numar;
     }
+
 }

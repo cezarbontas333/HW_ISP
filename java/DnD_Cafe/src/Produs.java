@@ -1,12 +1,13 @@
 public class Produs {
     String nume, categorie;
+    Integer ID;
     Double pret;
-    Disponibilitate disponibilitate;
 
-    public Produs(String nume, String categorie, Double pret, Disponibilitate disponibilitate) {
+    public Produs(String nume, String categorie, Integer ID, Double pret) {
         this.nume = nume;
         this.categorie = categorie;
         this.pret = pret;
-        this.disponibilitate = disponibilitate;
+        this.ID = ID;
     }
+
 }
