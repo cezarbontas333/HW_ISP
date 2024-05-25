@@ -4,6 +4,7 @@ public class Client {
     String nume, prenume;
     Integer varsta;
     Comanda comanda;
+    Double plata;
 
     public Client(String nume, String prenume, Integer varsta) {
         this.nume = nume;
@@ -15,7 +16,7 @@ public class Client {
         this.comanda = asta;
     }
 
-    Boolean comandaProdus(Integer idProdus, ArrayList<Produs> meniu) {
+    public Boolean comandaProdus(Integer idProdus, ArrayList<Produs> meniu) {
         if (meniu.isEmpty())
             return false;
         for (int i = 0; i < meniu.size(); i++) {
@@ -31,7 +32,7 @@ public class Client {
         return false;
     }
 
-    Boolean inchiriereJoc(Integer idJoc, Integer numarMinute, ArrayList<Joc> jocuri) {
+    public Boolean inchiriereJoc(Integer idJoc, Integer numarMinute, ArrayList<Joc> jocuri) {
         if (jocuri.isEmpty())
             return false;
         for (int i = 0; i < jocuri.size(); i++) {
@@ -39,6 +40,22 @@ public class Client {
                 comanda.adaugareSedinta(jocuri.get(i), numarMinute);
                 return true;
             }
+        }
+        return false;
+    }
+
+    public void plataComanda() {
+        this.comanda.status = StatusComanda.PLATIT;
+        this.comanda.AfisareComanda();
+    }
+
+    //Metoda de verificare si testare in JUNIT Test daca o comanda a fost platita sau nu
+    public Boolean verificarePlata() {
+        if(this.comanda.consumabile.size() > 0 || this.comanda.sedinte.size() > 0) {
+            if(this.comanda.status == StatusComanda.PLATIT) {
+                return true;
+            }
+            return false;
         }
         return false;
     }

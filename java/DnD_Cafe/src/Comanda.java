@@ -4,6 +4,7 @@ public class Comanda {
     Angajat responsabil;
     Client servit;
     Masa loc;
+    StatusComanda status;
     ArrayList<Produs> consumabile;
     ArrayList<Inchiriere> sedinte;
 
@@ -14,6 +15,7 @@ public class Comanda {
         this.loc = loc;
         consumabile = new ArrayList<Produs>();
         sedinte = new ArrayList<Inchiriere>();
+        this.status = StatusComanda.NEPLATIT;
         /*
          * for (int i = 0; i < meniu.size(); i++) {
          * consumabile.add(0);
@@ -29,14 +31,14 @@ public class Comanda {
         sedinte.add(new Inchiriere(numarMinute, alegere));
     }
 
-    public Double getPretTotal(){
+    public Double getPretTotal() {
         Double total = 0.0;
         Double pretC = 0.0;
         Double pretS = 0.0;
-        for(int i = 0; i < consumabile.size(); i++) {
+        for (int i = 0; i < consumabile.size(); i++) {
             pretC = pretC + consumabile.get(i).pret;
         }
-        for(int i = 0; i < sedinte.size(); i++) {
+        for (int i = 0; i < sedinte.size(); i++) {
             pretS = pretS + sedinte.get(i).alegere.taxaInchiriere * sedinte.get(i).numarMinute;
         }
         total = pretS + pretC;
@@ -55,6 +57,7 @@ public class Comanda {
             System.out.println(sedinte.get(i).alegere.nume + " " + sedinte.get(i).numarMinute);
         }
         System.out.println("Pretul total al comenzii: " + getPretTotal());
+        
     }
 
 }

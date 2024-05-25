@@ -15,16 +15,22 @@ public class Angajat {
     public Boolean creareComanda(Client om, Masa[] locuri) {
         int i;
         for (i = 0; i < locuri.length; i++) {
-            if (locuri[i].disponibilitate == Disponibilitate.LIBER) {
+            if (locuri[i].statusMasa()) {
                 Comanda nou = new Comanda(this, om, locuri[i]);
                 lista.add(nou);
+                locuri[i].schimbareDisponibilitate();
                 return true;
             }
         }
         return false;
     }
 
-    public void eliberareMasa() {
-
+    public void terminareComanda(Comanda comanda) {
+        if (comanda.status == StatusComanda.PLATIT) {
+            comanda.loc.schimbareDisponibilitate();
+            comanda.consumabile.clear();
+            comanda.sedinte.clear();
+            lista.remove(comanda);
+        }
     }
 }
